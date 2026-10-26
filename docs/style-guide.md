@@ -43,6 +43,36 @@ Font Family: Nunito (Google Fonts)
 The application uses Material 3 Shapes:
 - Medium: 16dp rounded corners
 - Large: 24dp rounded corners
+## 3.1 Status Colors
+
+| Status | Color | Hex | Usage |
+|---|---|---|---|
+| Completed | Green | #25844F | Completed steps and tasks, Done section |
+| In progress | Purple | #5B3FD9 | In-progress chips, Doing now section, progress bars |
+| Error / Delete | Red | #C2412D | Delete icons, delete confirmation, error messages |
+
+## 3.2 Spacing and Layout
+
+- 8dp grid system
+- 16dp–24dp screen padding
+- Pill-shaped (fully rounded) primary buttons
+- Minimum touch target: 48dp; child screen buttons 56–72dp high
+- Child screens use larger text (18sp and above)
+
+## 3.3 Components (Material 3)
+
+| Component | Used for |
+|---|---|
+| Card | Role cards, task cards, step cards, counter cards |
+| Button / OutlinedButton | Continue, Done, Finish task, Go Home |
+| FilterChip | Status filters, Assign to child |
+| LinearProgressIndicator | Task and step progress |
+| NavigationBar | Child Home / My Tasks bottom navigation |
+| TopAppBar | Create Task |
+| AlertDialog | Delete step confirmation |
+| ModalBottomSheet | "Great job" feedback after the last step |
+| FloatingActionButton | New Task |
+  
 
 ## 4. Theme Configuration
 
