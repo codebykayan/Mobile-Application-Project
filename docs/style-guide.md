@@ -1,94 +1,99 @@
-# TinySteps – Style Guide
+# TinySteps – System Architecture
 
-## 1. Color Palette
+## 1. Architecture Overview
 
-| Element | Color | Hex | Usage |
+TinySteps is an Android application built with Kotlin and Jetpack Compose. It follows the recommended Android layered architecture with three layers: **UI**, **Domain** and **Data**.
+
+Each layer has one job, and dependencies point inward: the UI depends on the domain layer, and the data layer implements the domain interfaces. The domain layer has no Android imports, so its rules are easy to unit-test.
+
+Parent and child use different devices, so **Firestore is the shared source of truth**: a task assigned on the parent's device appears on the child's device, and every completed step updates the parent's view.
+
+![TinySteps architecture diagram](architecture.png)
+
+*Figure 3 — TinySteps architecture: UI, Domain and Data layers with unidirectional data flow*
+
+## 2. Architecture Layers
+
+| Layer | Responsibility | Key classes | Rule |
 |---|---|---|---|
-| Primary | Forest Green | #25844F | Primary buttons, main actions and headings |
-| On Primary | White | #FFFFFF | Text and icons on primary buttons |
-| Secondary | Warm Yellow | #FFC94A | Stars, rewards and highlights |
-| On Secondary | Dark Brown | #3A2A00 | Text on secondary elements |
-| Tertiary | Purple | #5B3FD9 | In-progress indicators |
-| Error | Red | #C2412D | Errors and delete actions |
-| Parent Background | Light Gray | #F7F9FB | Parent and teacher screens |
-| Child Background | Light Green | #F1FAF4 | Child screens |
-| Surface | White | #FFFFFF | Cards and surfaces |
-| Primary Text | Dark Navy | #1B2430 | Main text |
-| Secondary Text | Slate Gray | #5B6474 | Supporting information |
+| **UI** | Display state and send user events; decide navigation | Composable screens (`RoleSelectionScreen` … `TaskCompletedScreen`), Routes, ViewModels (e.g. `StepByStepTaskViewModel`), `TinyStepsNavHost`, `TinyStepsTheme` | Screens are stateless and never call Firebase or a repository directly; only the ViewModel changes `uiState` |
+| **Domain** | Business rules of TinySteps, independent of Android | `Task`, `TaskStep`, `Child` models; `AssignTaskUseCase`, `CompleteStepUseCase`, `GetChildTasksUseCase`; `TaskRepository`, `ChildRepository` interfaces | Pure Kotlin: no Android, Compose or Firebase imports |
+| **Data** | Store, sync and fetch data; upload step images; keep small settings | `FirestoreTaskRepository`, `FirestoreChildRepository`, `StepImageStorage`, `UserPreferencesRepository` (DataStore), `TaskDto` and `TaskMapper` | Firestore is the single shared source of truth for tasks and progress; no UI code |
 
-## 2. Typography
+### UI Layer
+- One stateless `XxxScreen(uiState, onEvent…, modifier)` per screen, with a `@Preview` for each state.
+- One `XxxRoute` per screen that connects the screen to its ViewModel.
+- ViewModels hold one immutable `UiState` (`mutableStateOf` with `private set`).
+- `TinyStepsNavHost` owns the `NavController` and uses type-safe `@Serializable` routes; screens only call lambdas.
 
-Font Family: Nunito (Google Fonts)
+### Domain Layer
+- Models: `Task`, `TaskStep`, `Child`.
+- Use cases: `AssignTaskUseCase` (parent assigns a task to a child), `CompleteStepUseCase` (child completes the current step), `GetChildTasksUseCase` (child's To do / Doing / Done lists).
+- Repository interfaces: `TaskRepository`, `ChildRepository`.
 
-| Text Style | Size | Weight |
-|---|---|---|
-| Display Large | 57sp | Bold |
-| Display Medium | 45sp | Bold |
-| Display Small | 36sp | Bold |
-| Headline Large | 32sp | Bold |
-| Headline Medium | 28sp | Bold |
-| Headline Small | 24sp | Bold |
-| Title Large | 22sp | Bold |
-| Title Medium | 16sp | Bold |
-| Title Small | 14sp | Bold |
-| Body Large | 16sp | Normal |
-| Body Medium | 14sp | Normal |
-| Body Small | 12sp | Normal |
-| Label Large | 14sp | Medium |
-| Label Medium | 12sp | Medium |
-| Label Small | 11sp | Medium |
+### Data Layer
+- `FirestoreTaskRepository` and `FirestoreChildRepository` implement the domain interfaces.
+- `StepImageStorage` uploads step pictures to Firebase Storage and returns their URL.
+- `UserPreferencesRepository` stores the selected child and favourite colour in DataStore.
+- `TaskDto` and `TaskMapper` convert between Firestore documents and domain models.
 
-## 3. Shapes
+## 3. Unidirectional Data Flow (UDF)
 
-The application uses Material 3 Shapes:
-- Medium: 16dp rounded corners
-- Large: 24dp rounded corners
-## 3.1 Status Colors
+State flows **down** from the ViewModel to the screen; events flow **up** from the screen to the ViewModel.
 
-| Status | Color | Hex | Usage |
-|---|---|---|---|
-| Completed | Green | #25844F | Completed steps and tasks, Done section |
-| In progress | Purple | #5B3FD9 | In-progress chips, Doing now section, progress bars |
-| Error / Delete | Red | #C2412D | Delete icons, delete confirmation, error messages |
+**Example screen:** Step-by-Step Task (route `task_step/{taskId}`) — `StepByStepTaskScreen`, `StepByStepTaskRoute`, `StepByStepTaskViewModel`.
 
-## 3.2 Spacing and Layout
-
-- 8dp grid system
-- 16dp–24dp screen padding
-- Pill-shaped (fully rounded) primary buttons
-- Minimum touch target: 48dp; child screen buttons 56–72dp high
-- Child screens use larger text (18sp and above)
-
-## 3.3 Components (Material 3)
-
-| Component | Used for |
+| UiState | Meaning |
 |---|---|
-| Card | Role cards, task cards, step cards, counter cards |
-| Button / OutlinedButton | Continue, Done, Finish task, Go Home |
-| FilterChip | Status filters, Assign to child |
-| LinearProgressIndicator | Task and step progress |
-| NavigationBar | Child Home / My Tasks bottom navigation |
-| TopAppBar | Create Task |
-| AlertDialog | Delete step confirmation |
-| ModalBottomSheet | "Great job" feedback after the last step |
-| FloatingActionButton | New Task |
-  
+| Loading | Task and steps are being loaded from Firestore (progress indicator) |
+| Success | Current step: task title, "Step n of total", instruction, image, Done button; after the last step `showFeedback = true` opens the "Great job" sheet |
+| Error | Task cannot be loaded or the step cannot be saved (no network); message with a Retry button |
 
-## 4. Theme Configuration
+| Event (UI → ViewModel) | Result |
+|---|---|
+| `onDone` | `viewModel.completeStep()` |
+| `onFinishTask` | `TinyStepsNavHost` opens Task Completed |
+| `onClose` (X) | `TinyStepsNavHost` returns to My Tasks |
 
-TinySteps uses Jetpack Compose Material 3 with shared color schemes, typography and shapes.
+`StepByStepTaskRoute` reads `viewModel.uiState` and passes it to the stateless `StepByStepTaskScreen`, which only draws it. When the child taps Done, the screen calls `onDone`, and the Route forwards it to `viewModel.completeStep()`. The ViewModel builds a new state with `copy()` and Compose recomposes the screen. Navigation is decided by `TinyStepsNavHost`, never by the screen.
 
-- Light theme uses the defined TinySteps color palette.
-- Dark theme currently uses the same color values as the light theme.
-- Dynamic colors are disabled by default to preserve the app's identity.
-- Dynamic colors can be enabled on supported Android versions.
-- Parent and child background colors are defined separately.
-- ChildScreenBackground is mapped to surfaceVariant.
+```kotlin
+class StepByStepTaskViewModel : ViewModel() {
+    var uiState by mutableStateOf(StepByStepTaskUiState())
+        private set
 
-## 5. Design Principles
+    // Event from the UI (flows up)
+    fun completeStep() {
+        uiState = if (uiState.stepNumber < uiState.totalSteps)
+            uiState.copy(stepNumber = uiState.stepNumber + 1)
+        else uiState.copy(showFeedback = true)
+    }
+}
+```
 
-- Maintain consistent colors and typography across screens.
-- Use clear visual indicators for task progress and completion.
-- Use rounded components to create a friendly interface for children aged 7–12.
-- Keep task instructions simple and easy to read.
-- Distinguish primary actions, progress states and destructive actions using the defined color palette.
+## 4. Feature Walk-through: completing a step
+
+| Step | Layer | What happens |
+|---|---|---|
+| 1 | UI | The child taps Done on `StepByStepTaskScreen`; `StepByStepTaskRoute` forwards the event to `viewModel.completeStep()` |
+| 2 | UI → Domain | `StepByStepTaskViewModel.completeStep()` calls `CompleteStepUseCase(taskId, stepNumber)` |
+| 3 | Domain | `CompleteStepUseCase` checks the step is the current step of the task, marks the `TaskStep` as done, recalculates progress and status, and calls `TaskRepository.updateProgress(task)` |
+| 4 | Data | `FirestoreTaskRepository` converts the task with `TaskMapper.toDto()` and saves it in Firestore |
+| 5 | Data → UI | The repository returns a `Flow<Result>`; the ViewModel updates `uiState` with `copy()` and the screen recomposes |
+| 6 | UI (parent device) | `ParentHomeViewModel` observes `TaskRepository` through the Firestore listener; the task card on Parent/Teacher Home & Progress updates (e.g. 6/6, Completed) |
+
+## 5. Technology
+
+| Library | Used for |
+|---|---|
+| Kotlin + Jetpack Compose + Material 3 | All screens and `TinyStepsTheme` |
+| Navigation Compose + Kotlinx Serialization | Type-safe routes in `TinyStepsNavHost` |
+| Lifecycle ViewModel Compose | One ViewModel per screen |
+| Activity Compose (Photo Picker) | Choosing step images in `CreateTaskRoute` |
+| Firebase Firestore | Shared tasks, steps and progress |
+| Firebase Storage | Step images |
+| Kotlin Coroutines / Flow | Async calls and live updates |
+| Coil | Loading step images |
+| DataStore Preferences | Selected child and favourite colour |
+
+The full justification for each library is in section B3 of the Milestone 2 submission.
