@@ -7,7 +7,7 @@ TinySteps is a child-friendly mobile application designed for children aged 7–
 - Teachers
 
 ## Project Status
-Milestone 1 – Project Proposal
+Milestone 2
 
 ## Milestone 2 – UI/UX Design & System Architecture
 
