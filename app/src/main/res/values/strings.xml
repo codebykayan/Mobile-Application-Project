@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TinyStep - stage2</string>
+    <string name="app_title">TinySteps</string>
+    <string name="tagline">One small step at a time.</string>
+    <string name="role_selection_heading">Who is using TinySteps?</string>
+    <string name="parent_role_title">Parent / Teacher</string>
+    <string name="parent_role_subtitle">Create, assign and follow tasks</string>
+    <string name="child_role_title">Child</string>
+    <string name="child_role_subtitle">See and finish my tasks</string>
+    <string name="continue_button">Continue</string>
+</resources>
