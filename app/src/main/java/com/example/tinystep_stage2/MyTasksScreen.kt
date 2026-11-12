@@ -34,6 +34,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -144,7 +145,7 @@ fun MyTasksScreen(
         ) {
             item {
                 Text(
-                    text = "My Tasks",
+                    text = stringResource(R.string.my_tasks_title),
                     fontSize = 28.sp,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onBackground,
@@ -161,14 +162,14 @@ fun MyTasksScreen(
                         horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
                         Text(
-                            text = "No tasks yet!",
+                            text = stringResource(R.string.no_tasks_yet),
                             fontSize = 22.sp,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onBackground,
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "When your parent or teacher gives you a task, it will show up here.",
+                            text = stringResource(R.string.no_tasks_yet_desc),
                             fontSize = 16.sp,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                             textAlign = TextAlign.Center,
@@ -180,7 +181,7 @@ fun MyTasksScreen(
                     item {
                         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                             Text(
-                                text = "Doing now",
+                                text = stringResource(R.string.doing_now_section),
                                 fontSize = 20.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = TertiaryInProgress,
@@ -197,7 +198,7 @@ fun MyTasksScreen(
                     item {
                         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                             Text(
-                                text = "To do",
+                                text = stringResource(R.string.to_do_section),
                                 fontSize = 20.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = MaterialTheme.colorScheme.onBackground,
@@ -217,7 +218,7 @@ fun MyTasksScreen(
                     item {
                         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                             Text(
-                                text = "Done",
+                                text = stringResource(R.string.done_section),
                                 fontSize = 20.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = PrimaryGreen,
@@ -250,7 +251,7 @@ fun DoingNowCard(
             modifier = Modifier.padding(20.dp),
         ) {
             Text(
-                text = "${task.title} · ${task.completedSteps} of ${task.totalSteps} steps",
+                text = stringResource(R.string.task_steps_detail, task.title, task.completedSteps, task.totalSteps),
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onBackground,
@@ -283,7 +284,7 @@ fun DoingNowCard(
                 ),
             ) {
                 Text(
-                    text = "Continue",
+                    text = stringResource(R.string.continue_button),
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
                 )
@@ -308,7 +309,7 @@ fun ToDoCard(
             modifier = Modifier.padding(20.dp),
         ) {
             Text(
-                text = "${task.title} · ${task.totalSteps} steps",
+                text = stringResource(R.string.task_total_steps_detail, task.title, task.totalSteps),
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onBackground,
@@ -328,7 +329,7 @@ fun ToDoCard(
                 ),
             ) {
                 Text(
-                    text = "Start",
+                    text = stringResource(R.string.start_button),
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
                 )

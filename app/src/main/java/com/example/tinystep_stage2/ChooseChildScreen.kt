@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -31,12 +32,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.tinystep_stage2.ui.theme.PrimaryGreen
 import com.example.tinystep_stage2.ui.theme.SecondaryAccent
 import com.example.tinystep_stage2.ui.theme.TinyStepsTheme
 
@@ -69,6 +72,7 @@ fun ChooseChildRoute(
     modifier: Modifier = Modifier,
     viewModel: ChooseChildViewModel = viewModel(),
     onChildChosen: (String) -> Unit = {},
+    onAddChildClick: () -> Unit = {},
     onBack: () -> Unit = {},
 ) {
     var selectedChildId by rememberSaveable { mutableStateOf<String?>(null) }
@@ -85,6 +89,7 @@ fun ChooseChildRoute(
         onContinue = {
             selectedChildId?.let { onChildChosen(it) }
         },
+        onAddChild = onAddChildClick,
         onBack = onBack,
         modifier = modifier,
     )
@@ -95,11 +100,12 @@ fun ChooseChildScreen(
     uiState: ChooseChildUiState,
     onChildSelected: (String) -> Unit,
     onContinue: () -> Unit,
+    onAddChild: () -> Unit,
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val selectedChild = uiState.children.find { it.id == uiState.selectedChildId }
-    val buttonText = selectedChild?.let { "Let's go, ${it.name}!" } ?: "Let's go!"
+    val buttonText = selectedChild?.let { stringResource(R.string.lets_go_name, it.name) } ?: stringResource(R.string.lets_go)
 
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -116,31 +122,38 @@ fun ChooseChildScreen(
                 modifier = Modifier.fillMaxWidth(),
             ) {
                 Spacer(modifier = Modifier.height(8.dp))
-                Surface(
-                    onClick = onBack,
-                    shape = CircleShape,
-                    color = MaterialTheme.colorScheme.surface,
-                    modifier = Modifier.size(48.dp),
-                    tonalElevation = 1.dp,
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    Box(contentAlignment = Alignment.Center) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back",
-                            tint = MaterialTheme.colorScheme.onSurface,
-                        )
+                    Surface(
+                        onClick = onBack,
+                        shape = CircleShape,
+                        color = MaterialTheme.colorScheme.surface,
+                        modifier = Modifier.size(48.dp),
+                        tonalElevation = 1.dp,
+                    ) {
+                        Box(contentAlignment = Alignment.Center) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                                contentDescription = stringResource(R.string.go_back),
+                                tint = MaterialTheme.colorScheme.onSurface,
+                            )
+                        }
                     }
                 }
+
                 Spacer(modifier = Modifier.height(24.dp))
                 Text(
-                    text = "Who are you?",
+                    text = stringResource(R.string.who_are_you),
                     style = MaterialTheme.typography.headlineLarge,
                     color = MaterialTheme.colorScheme.onBackground,
                     fontWeight = FontWeight.Bold,
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "Tap your picture",
+                    text = stringResource(R.string.tap_your_picture),
                     style = MaterialTheme.typography.bodyLarge,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
@@ -153,6 +166,38 @@ fun ChooseChildScreen(
                         onClick = { onChildSelected(child.id) },
                     )
                     Spacer(modifier = Modifier.height(16.dp))
+                }
+
+                // Connect My Account option
+                Surface(
+                    onClick = onAddChild,
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = MaterialTheme.shapes.medium,
+                    color = MaterialTheme.colorScheme.surface,
+                    border = BorderStroke(1.dp, PrimaryGreen),
+                    tonalElevation = 0.dp,
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(20.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center,
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Add,
+                            contentDescription = stringResource(R.string.connect_my_account),
+                            tint = PrimaryGreen,
+                            modifier = Modifier.size(24.dp),
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(
+                            text = stringResource(R.string.connect_my_account),
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold,
+                            color = PrimaryGreen,
+                        )
+                    }
                 }
             }
 
@@ -236,7 +281,7 @@ fun ChildCard(
                     )
                     Spacer(modifier = Modifier.height(2.dp))
                     Text(
-                        text = "${child.age} years old",
+                        text = stringResource(R.string.years_old, child.age),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         fontSize = 16.sp,
@@ -249,15 +294,15 @@ fun ChildCard(
                     shape = CircleShape,
                     color = SecondaryAccent,
                     modifier = Modifier
-                        .size(32.dp)
+                        .size(28.dp)
                         .align(Alignment.TopEnd),
                 ) {
                     Box(contentAlignment = Alignment.Center) {
                         Icon(
                             imageVector = Icons.Default.Check,
-                            contentDescription = "Selected",
+                            contentDescription = null,
                             tint = Color.Black,
-                            modifier = Modifier.size(18.dp),
+                            modifier = Modifier.size(16.dp),
                         )
                     }
                 }
@@ -281,6 +326,7 @@ private fun ChooseChildScreenSaraSelectedPreview() {
             ),
             onChildSelected = {},
             onContinue = {},
+            onAddChild = {},
             onBack = {},
         )
     }
@@ -301,6 +347,7 @@ private fun ChooseChildScreenNothingSelectedPreview() {
             ),
             onChildSelected = {},
             onContinue = {},
+            onAddChild = {},
             onBack = {},
         )
     }

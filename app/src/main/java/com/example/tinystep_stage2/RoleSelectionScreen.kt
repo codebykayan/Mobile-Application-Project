@@ -94,7 +94,6 @@ fun RoleSelectionScreen(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Spacer(modifier = Modifier.height(24.dp))
                 Image(
                     painter = painterResource(id = R.drawable.tinysteps_logo),
                     contentDescription = stringResource(id = R.string.app_title),
@@ -113,7 +112,7 @@ fun RoleSelectionScreen(
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
-                Spacer(modifier = Modifier.height(40.dp))
+                Spacer(modifier = Modifier.height(32.dp))
                 Text(
                     text = stringResource(id = R.string.role_selection_heading),
                     style = MaterialTheme.typography.titleLarge,

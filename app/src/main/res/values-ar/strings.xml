@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TinySteps</string>
+    <string name="app_title">TinySteps</string>
+    <string name="tagline">خطوة بخطوة نحو الهدف.</string>
+    <string name="role_selection_heading">من يستخدم التطبيق؟</string>
+    <string name="parent_role_title">ولي الأمر / المعلم</string>
+    <string name="parent_role_subtitle">إنشاء المهام وإسنادها ومتابعتها</string>
+    <string name="child_role_title">الطفل</string>
+    <string name="child_role_subtitle">عرض وإنجاز مهامي</string>
+    <string name="continue_button">متابعة</string>
+    <string name="language_switcher">English</string>
+
+    <!-- Parent Auth -->
+    <string name="welcome_back_parent">مرحباً بعودتك</string>
+    <string name="create_parent_account">إنشاء حساب ولي أمر</string>
+    <string name="signup_subtitle">أنشئ حساباً للبدء في إضافة وإدارة المهام</string>
+    <string name="login_subtitle">سجّل الدخول لمتابعة وإدارة مهام عائلتك</string>
+    <string name="email_label">البريد الإلكتروني</string>
+    <string name="email_placeholder">parent@example.com</string>
+    <string name="password_label">كلمة المرور</string>
+    <string name="confirm_password_label">تأكيد كلمة المرور</string>
+    <string name="login_button">تسجيل الدخول</string>
+    <string name="signup_button">إنشاء حساب</string>
+    <string name="demo_mode_button">المتابعة بالوضع التجريبي</string>
+    <string name="no_account_prompt">ليس لديك حساب؟</string>
+    <string name="has_account_prompt">لديك حساب بالفعل؟</string>
+    <string name="remember_me">تذكرني على هذا الجهاز</string>
+
+    <!-- Validation Errors -->
+    <string name="error_invalid_email">يرجى إدخال عنوان بريد إلكتروني صحيح</string>
+    <string name="error_password_too_short">يجب أن تتكون كلمة المرور من 6 أحرف على الأقل</string>
+    <string name="error_passwords_do_not_match">كلمتا المرور غير متطابقتين</string>
+    <string name="toggle_password_visibility">إظهار أو إخفاء كلمة المرور</string>
+
+    <!-- Parent Profile -->
+    <string name="title_parent_profile">الملف الشخصي لولي الأمر</string>
+    <string name="section_account_info">معلومات الحساب</string>
+    <string name="parent_name_label">الاسم</string>
+    <string name="section_change_password">تغيير كلمة المرور</string>
+    <string name="label_current_password">كلمة المرور الحالية</string>
+    <string name="label_new_password">كلمة المرور الجديدة</string>
+    <string name="label_confirm_new_password">تأكيد كلمة المرور الجديدة</string>
+    <string name="button_update_password">تحديث كلمة المرور</string>
+    <string name="section_language">اللغة</string>
+    <string name="button_switch_account">تبديل الحساب</string>
+    <string name="button_log_out">تسجيل الخروج</string>
+
+    <!-- Choose Child & Child Pairing -->
+    <string name="who_are_you">من أنت؟</string>
+    <string name="tap_your_picture">اضغط على صورتك</string>
+    <string name="lets_go">هيا بنا!</string>
+    <string name="lets_go_name">هيا بنا يا %1$s!</string>
+    <string name="years_old">%1$d سنوات</string>
+    <string name="connect_my_account">+ ربط حسابي</string>
+    <string name="connect_device_title">ربط جهازك</string>
+    <string name="pairing_subtitle">أدخل رمز الربط المكون من 6 أرقام والمزود من ولي الأمر أو المعلم.</string>
+    <string name="pairing_code_label">رمز الربط</string>
+    <string name="connect_button">ربط</string>
+    <string name="switch_child">تبديل الطفل</string>
+
+    <!-- Parent Home -->
+    <string name="good_morning">صباح الخير، %1$s</string>
+    <string name="lets_take_small_steps">خطوة بخطوة نحو الهدف.</string>
+    <string name="active_tasks">المهام النشطة</string>
+    <string name="completed_summary">المكتملة</string>
+    <string name="children_title">الأطفال</string>
+    <string name="add_child_button">+ إضافة طفل</string>
+    <string name="filter_all">الكل</string>
+    <string name="filter_active">النشطة</string>
+    <string name="filter_completed">المكتملة</string>
+    <string name="no_tasks_found">لم يتم العثور على مهام</string>
+    <string name="new_task_button">مهمة جديدة</string>
+
+    <!-- Task Labels -->
+    <string name="status_in_progress">قيد التنفيذ</string>
+    <string name="status_completed">مكتملة</string>
+    <string name="status_to_do">قيد الانتظار</string>
+    <string name="assigned_to">مسندة إلى %1$s</string>
+    <string name="assigned_to_all">مسندة للجميع</string>
+    <string name="assigned_to_two">مسندة إلى %1$s و%2$s</string>
+    <string name="assigned_to_many">مسندة إلى %1$s</string>
+    <string name="progress_label">التقدم</string>
+    <string name="steps_progress">%1$d من %2$d خطوات</string>
+
+    <!-- Create Task -->
+    <string name="title_new_task">مهمة جديدة</string>
+    <string name="title_edit_task">تعديل المهمة</string>
+    <string name="task_name_label">اسم المهمة</string>
+    <string name="task_image_label">صورة المهمة</string>
+    <string name="choose_predefined_image">المكتبة الجاهزة</string>
+    <string name="choose_gallery_image">معرض الصور</string>
+    <string name="remove_task_image">إزالة</string>
+    <string name="no_image_selected">لا توجد صورة</string>
+    <string name="steps_count_label">الخطوات (%1$d)</string>
+    <string name="add_step_button">+ إضافة خطوة</string>
+    <string name="assign_to_label">إسناد إلى</string>
+    <string name="assign_task_button">إسناد المهمة</string>
+    <string name="assign_task_to">إسناد المهمة إلى %1$s</string>
+    <string name="assign_task_to_all">إسناد المهمة للجميع</string>
+    <string name="save_changes">حفظ التغييرات</string>
+    <string name="task_unavailable">المهمة غير متاحة</string>
+    <string name="task_unavailable_desc">تعذر تحميل هذه المهمة للتعديل.</string>
+    <string name="go_back">العودة</string>
+    <string name="delete_step_title">حذف الخطوة %1$d؟</string>
+    <string name="delete_step_message">سيتم حذف \"%1$s\" من %2$s. لا يمكن التراجع عن هذا الإجراء.</string>
+    <string name="action_delete">حذف</string>
+    <string name="action_cancel">إلغاء</string>
+
+    <!-- Add / Edit Child -->
+    <string name="title_manage_children">إدارة الأطفال</string>
+    <string name="title_add_child">إضافة طفل</string>
+    <string name="title_edit_child">تعديل بيانات الطفل</string>
+    <string name="child_name_label">اسم الطفل</string>
+    <string name="enter_name_placeholder">أدخل الاسم</string>
+    <string name="age_label">العمر</string>
+    <string name="enter_age_placeholder">أدخل العمر</string>
+    <string name="delete_child_title">حذف الطفل</string>
+    <string name="delete_child_message">هل أنت تأكد من رغبتك في حذف %1$s؟ لا يمكن التراجع عن هذا الإجراء.</string>
+    <string name="no_children_added">لم يتم إضافة أطفال بعد.</string>
+
+    <!-- Child Home -->
+    <string name="hi_child_name">أهلاً %1$s!</string>
+    <string name="ready_for_today">جاهز لليوم؟</string>
+    <string name="my_color">لوني المفضل</string>
+    <string name="tap_to_pick_color">اضغط لاختيار لون</string>
+    <string name="to_do_count">انتظار</string>
+    <string name="doing_count">تنفيذ</string>
+    <string name="done_count">مكتمل</string>
+    <string name="keep_going">واصل التقدم!</string>
+    <string name="no_task_in_progress">لا توجد مهمة قيد التنفيذ حالياً</string>
+    <string name="step_progress_subtitle">الخطوة %1$d من %2$d · أوشكت على الانتهاء!</string>
+    <string name="nav_home">الرئيسية</string>
+    <string name="nav_my_tasks">مهامي</string>
+
+    <!-- My Tasks -->
+    <string name="my_tasks_title">مهامي</string>
+    <string name="doing_now_section">جارٍ تنفيذها</string>
+    <string name="to_do_section">قيد الانتظار</string>
+    <string name="done_section">مكتملة</string>
+    <string name="no_tasks_yet">لا توجد مهام بعد!</string>
+    <string name="no_tasks_yet_desc">عندما يضيف لك ولي الأمر أو المعلم مهمة، ستظهر هنا.</string>
+    <string name="start_button">ابدأ</string>
+    <string name="task_steps_detail">%1$s · %2$d من %3$d خطوات</string>
+    <string name="task_total_steps_detail">%1$s · %2$d خطوات</string>
+
+    <!-- Step By Step Task -->
+    <string name="step_chip">الخطوة %1$d من %2$d</string>
+    <string name="button_done">تم</string>
+    <string name="great_job">عمل رائع يا %1$s!</string>
+    <string name="last_step_message">كانت هذه الخطوة الأخيرة!</string>
+    <string name="finish_task_button">إنهاء المهمة ←</string>
+    <string name="action_close">إغلاق</string>
+
+    <!-- Task Completed -->
+    <string name="you_did_it">لقد نجحت يا %1$s!</string>
+    <string name="you_finished_all">أنهيت جميع الخطوات الـ %1$d في</string>
+    <string name="parent_can_see">يمكن لـ %1$s رؤية إنجازك الآن!</string>
+    <string name="back_to_my_tasks">العودة لمهامي</string>
+    <string name="go_home">الرئيسية</string>
+</resources>

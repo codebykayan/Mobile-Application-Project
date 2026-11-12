@@ -29,6 +29,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -198,7 +199,7 @@ fun TaskCompletedScreen(
                 Spacer(modifier = Modifier.height(12.dp))
 
                 Text(
-                    text = "You did it, ${uiState.childName}!",
+                    text = stringResource(R.string.you_did_it, uiState.childName),
                     fontSize = 28.sp,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onBackground,
@@ -206,7 +207,7 @@ fun TaskCompletedScreen(
                 )
 
                 Text(
-                    text = "You finished all ${uiState.totalSteps} steps of",
+                    text = stringResource(R.string.you_finished_all, uiState.totalSteps),
                     fontSize = 16.sp,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     textAlign = TextAlign.Center,
@@ -227,7 +228,7 @@ fun TaskCompletedScreen(
                     color = Color(0xFFC9DCCF),
                 ) {
                     Text(
-                        text = "${uiState.parentLabel} can see you finished!",
+                        text = stringResource(R.string.parent_can_see, uiState.parentLabel),
                         modifier = Modifier.padding(horizontal = 20.dp, vertical = 10.dp),
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
@@ -252,7 +253,7 @@ fun TaskCompletedScreen(
                     ),
                 ) {
                     Text(
-                        text = "Back to My Tasks",
+                        text = stringResource(R.string.back_to_my_tasks),
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold,
                     )
@@ -270,7 +271,7 @@ fun TaskCompletedScreen(
                     ),
                 ) {
                     Text(
-                        text = "Go Home",
+                        text = stringResource(R.string.go_home),
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold,
                     )

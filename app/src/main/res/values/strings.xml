@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TinyStep - stage2</string>
+    <string name="app_name">TinySteps</string>
     <string name="app_title">TinySteps</string>
     <string name="tagline">One small step at a time.</string>
     <string name="role_selection_heading">Who is using TinySteps?</string>
@@ -8,4 +8,153 @@
     <string name="child_role_title">Child</string>
     <string name="child_role_subtitle">See and finish my tasks</string>
     <string name="continue_button">Continue</string>
+    <string name="language_switcher">عربي</string>
+
+    <!-- Parent Auth -->
+    <string name="welcome_back_parent">Welcome Back, Parent</string>
+    <string name="create_parent_account">Create Parent Account</string>
+    <string name="signup_subtitle">Sign up to start creating and managing tasks</string>
+    <string name="login_subtitle">Log in to view and manage your family\'s tasks</string>
+    <string name="email_label">Email</string>
+    <string name="email_placeholder">parent@example.com</string>
+    <string name="password_label">Password</string>
+    <string name="confirm_password_label">Confirm Password</string>
+    <string name="login_button">Log In</string>
+    <string name="signup_button">Sign Up</string>
+    <string name="demo_mode_button">Continue in Demo Mode</string>
+    <string name="no_account_prompt">Don\'t have an account?</string>
+    <string name="has_account_prompt">Already have an account?</string>
+    <string name="remember_me">Remember Me on this device</string>
+
+    <!-- Validation Errors -->
+    <string name="error_invalid_email">Please enter a valid email address</string>
+    <string name="error_password_too_short">Password must be at least 6 characters</string>
+    <string name="error_passwords_do_not_match">Passwords do not match</string>
+    <string name="toggle_password_visibility">Toggle password visibility</string>
+
+    <!-- Parent Profile -->
+    <string name="title_parent_profile">Parent Profile</string>
+    <string name="section_account_info">Account Information</string>
+    <string name="parent_name_label">Name</string>
+    <string name="section_change_password">Change Password</string>
+    <string name="label_current_password">Current Password</string>
+    <string name="label_new_password">New Password</string>
+    <string name="label_confirm_new_password">Confirm New Password</string>
+    <string name="button_update_password">Update Password</string>
+    <string name="section_language">Language</string>
+    <string name="button_switch_account">Switch Account</string>
+    <string name="button_log_out">Log Out</string>
+
+    <!-- Choose Child & Child Pairing -->
+    <string name="who_are_you">Who are you?</string>
+    <string name="tap_your_picture">Tap your picture</string>
+    <string name="lets_go">Let\'s go!</string>
+    <string name="lets_go_name">Let\'s go, %1$s!</string>
+    <string name="years_old">%1$d years old</string>
+    <string name="connect_my_account">+ Connect My Account</string>
+    <string name="connect_device_title">Connect Your Device</string>
+    <string name="pairing_subtitle">Enter the 6-digit pairing code provided by your parent or teacher.</string>
+    <string name="pairing_code_label">Pairing Code</string>
+    <string name="connect_button">Connect</string>
+    <string name="switch_child">Switch Child</string>
+
+    <!-- Parent Home -->
+    <string name="good_morning">Good morning, %1$s</string>
+    <string name="lets_take_small_steps">Let\'s take small steps.</string>
+    <string name="active_tasks">Active tasks</string>
+    <string name="completed_summary">Completed</string>
+    <string name="children_title">Children</string>
+    <string name="add_child_button">+ Add Child</string>
+    <string name="filter_all">All</string>
+    <string name="filter_active">Active</string>
+    <string name="filter_completed">Completed</string>
+    <string name="no_tasks_found">No tasks found</string>
+    <string name="new_task_button">New Task</string>
+
+    <!-- Task Labels -->
+    <string name="status_in_progress">In progress</string>
+    <string name="status_completed">Completed</string>
+    <string name="status_to_do">To do</string>
+    <string name="assigned_to">Assigned to %1$s</string>
+    <string name="assigned_to_all">Assigned to All</string>
+    <string name="assigned_to_two">Assigned to %1$s and %2$s</string>
+    <string name="assigned_to_many">Assigned to %1$s</string>
+    <string name="progress_label">Progress</string>
+    <string name="steps_progress">%1$d of %2$d steps</string>
+
+    <!-- Create Task -->
+    <string name="title_new_task">New Task</string>
+    <string name="title_edit_task">Edit Task</string>
+    <string name="task_name_label">Task name</string>
+    <string name="task_image_label">Task Image</string>
+    <string name="choose_predefined_image">Library</string>
+    <string name="choose_gallery_image">Gallery</string>
+    <string name="remove_task_image">Remove</string>
+    <string name="no_image_selected">No image</string>
+    <string name="steps_count_label">Steps (%1$d)</string>
+    <string name="add_step_button">+ Add step</string>
+    <string name="assign_to_label">Assign to</string>
+    <string name="assign_task_button">Assign task</string>
+    <string name="assign_task_to">Assign task to %1$s</string>
+    <string name="assign_task_to_all">Assign task to All</string>
+    <string name="save_changes">Save changes</string>
+    <string name="task_unavailable">Task unavailable</string>
+    <string name="task_unavailable_desc">This task could not be loaded for editing.</string>
+    <string name="go_back">Go back</string>
+    <string name="delete_step_title">Delete step %1$d?</string>
+    <string name="delete_step_message">\"%1$s\" will be removed from %2$s. This can\'t be undone.</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_cancel">Cancel</string>
+
+    <!-- Add / Edit Child -->
+    <string name="title_manage_children">Manage Children</string>
+    <string name="title_add_child">Add Child</string>
+    <string name="title_edit_child">Edit Child</string>
+    <string name="child_name_label">Child\'s Name</string>
+    <string name="enter_name_placeholder">Enter name</string>
+    <string name="age_label">Age</string>
+    <string name="enter_age_placeholder">Enter age</string>
+    <string name="delete_child_title">Delete Child</string>
+    <string name="delete_child_message">Are you sure you want to delete %1$s? This action cannot be undone.</string>
+    <string name="no_children_added">No children added yet.</string>
+
+    <!-- Child Home -->
+    <string name="hi_child_name">Hi %1$s!</string>
+    <string name="ready_for_today">Ready for today?</string>
+    <string name="my_color">My color</string>
+    <string name="tap_to_pick_color">Tap to pick any color</string>
+    <string name="to_do_count">To do</string>
+    <string name="doing_count">Doing</string>
+    <string name="done_count">Done</string>
+    <string name="keep_going">Keep going!</string>
+    <string name="no_task_in_progress">No task in progress</string>
+    <string name="step_progress_subtitle">Step %1$d of %2$d · Almost done!</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_my_tasks">My Tasks</string>
+
+    <!-- My Tasks -->
+    <string name="my_tasks_title">My Tasks</string>
+    <string name="doing_now_section">Doing now</string>
+    <string name="to_do_section">To do</string>
+    <string name="done_section">Done</string>
+    <string name="no_tasks_yet">No tasks yet!</string>
+    <string name="no_tasks_yet_desc">When your parent or teacher gives you a task, it will show up here.</string>
+    <string name="start_button">Start</string>
+    <string name="task_steps_detail">%1$s · %2$d of %3$d steps</string>
+    <string name="task_total_steps_detail">%1$s · %2$d steps</string>
+
+    <!-- Step By Step Task -->
+    <string name="step_chip">Step %1$d of %2$d</string>
+    <string name="button_done">Done</string>
+    <string name="great_job">Great job, %1$s!</string>
+    <string name="last_step_message">That was the last step!</string>
+    <string name="finish_task_button">Finish task →</string>
+    <string name="action_close">Close</string>
+
+    <!-- Task Completed -->
+    <string name="you_did_it">You did it, %1$s!</string>
+    <string name="you_finished_all">You finished all %1$d steps of</string>
+    <string name="parent_can_see">%1$s can see you finished!</string>
+    <string name="back_to_my_tasks">Back to My Tasks</string>
+    <string name="go_home">Go Home</string>
 </resources>

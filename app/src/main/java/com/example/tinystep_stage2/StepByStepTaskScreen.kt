@@ -38,6 +38,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -184,14 +185,14 @@ fun FeedbackSheetContent(
             }
         }
         Text(
-            text = "Great job, $childName!",
+            text = stringResource(R.string.great_job, childName),
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.onBackground,
             textAlign = TextAlign.Center,
         )
         Text(
-            text = "That was the last step!",
+            text = stringResource(R.string.last_step_message),
             fontSize = 16.sp,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             textAlign = TextAlign.Center,
@@ -209,7 +210,7 @@ fun FeedbackSheetContent(
             ),
         ) {
             Text(
-                text = "Finish task →",
+                text = stringResource(R.string.finish_task_button),
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
             )
@@ -256,7 +257,7 @@ fun StepByStepTaskScreen(
                         Box(contentAlignment = Alignment.Center) {
                             Icon(
                                 imageVector = Icons.Default.Close,
-                                contentDescription = "Close",
+                                contentDescription = stringResource(R.string.action_close),
                                 tint = MaterialTheme.colorScheme.onSurface,
                             )
                         }
@@ -286,7 +287,7 @@ fun StepByStepTaskScreen(
                     color = Color(0xFFE3F5E8),
                 ) {
                     Text(
-                        text = "Step ${uiState.stepNumber} of ${uiState.totalSteps}",
+                        text = stringResource(R.string.step_chip, uiState.stepNumber, uiState.totalSteps),
                         modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp),
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Bold,
@@ -366,7 +367,7 @@ fun StepByStepTaskScreen(
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "Done",
+                        text = stringResource(R.string.button_done),
                         fontSize = 22.sp,
                         fontWeight = FontWeight.Bold,
                     )

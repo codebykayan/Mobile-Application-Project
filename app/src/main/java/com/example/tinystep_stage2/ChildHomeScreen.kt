@@ -40,6 +40,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -93,6 +94,7 @@ fun ChildHomeRoute(
     viewModel: ChildHomeViewModel = viewModel(),
     onOpenTask: (String) -> Unit = {},
     onOpenMyTasks: () -> Unit = {},
+    onSwitchChild: () -> Unit = {},
 ) {
     val uiState = viewModel.uiState
 
@@ -101,6 +103,7 @@ fun ChildHomeRoute(
         onContinueTask = onOpenTask,
         onColorClick = {},
         onMyTasksClick = onOpenMyTasks,
+        onAvatarClick = onSwitchChild,
     )
 }
 
@@ -110,6 +113,7 @@ fun ChildHomeScreen(
     onContinueTask: (String) -> Unit,
     onColorClick: () -> Unit,
     onMyTasksClick: () -> Unit,
+    onAvatarClick: () -> Unit = {},
     modifier: Modifier = Modifier,
 ) {
     Scaffold(
@@ -140,6 +144,7 @@ fun ChildHomeScreen(
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Surface(
+                        onClick = onAvatarClick,
                         modifier = Modifier.size(64.dp),
                         shape = CircleShape,
                         color = SecondaryAccent,
@@ -154,15 +159,15 @@ fun ChildHomeScreen(
                         }
                     }
                     Spacer(modifier = Modifier.width(16.dp))
-                    Column {
+                    Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = "Hi ${uiState.childName}!",
+                            text = stringResource(R.string.hi_child_name, uiState.childName),
                             fontSize = 28.sp,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onBackground,
                         )
                         Text(
-                            text = "Ready for today?",
+                            text = stringResource(R.string.ready_for_today),
                             fontSize = 16.sp,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
@@ -179,7 +184,7 @@ fun ChildHomeScreen(
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Text(
-                        text = "My color",
+                        text = stringResource(R.string.my_color),
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Medium,
                         color = MaterialTheme.colorScheme.onBackground,
@@ -205,7 +210,7 @@ fun ChildHomeScreen(
                     }
                     Spacer(modifier = Modifier.width(12.dp))
                     Text(
-                        text = "Tap to pick any color",
+                        text = stringResource(R.string.tap_to_pick_color),
                         fontSize = 14.sp,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
@@ -220,19 +225,19 @@ fun ChildHomeScreen(
                 ) {
                     CounterCard(
                         count = uiState.toDoCount,
-                        label = "To do",
+                        label = stringResource(R.string.to_do_count),
                         containerColor = Color(0xFFF0F2F5),
                         modifier = Modifier.weight(1f),
                     )
                     CounterCard(
                         count = uiState.doingCount,
-                        label = "Doing",
+                        label = stringResource(R.string.doing_count),
                         containerColor = Color(0xFFEEE9FE),
                         modifier = Modifier.weight(1f),
                     )
                     CounterCard(
                         count = uiState.doneCount,
-                        label = "Done",
+                        label = stringResource(R.string.done_count),
                         containerColor = Color(0xFFE3F5E8),
                         modifier = Modifier.weight(1f),
                     )
@@ -242,7 +247,7 @@ fun ChildHomeScreen(
 
                 // Heading "Keep going!"
                 Text(
-                    text = "Keep going!",
+                    text = stringResource(R.string.keep_going),
                     fontSize = 26.sp,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onBackground,
@@ -268,7 +273,7 @@ fun ChildHomeScreen(
                             horizontalAlignment = Alignment.CenterHorizontally,
                         ) {
                             Text(
-                                text = "No task in progress",
+                                text = stringResource(R.string.no_task_in_progress),
                                 fontSize = 18.sp,
                                 fontWeight = FontWeight.SemiBold,
                                 color = MaterialTheme.colorScheme.onBackground,
@@ -288,9 +293,9 @@ fun CounterCard(
     containerColor: Color,
     modifier: Modifier = Modifier,
 ) {
-    val numberColor = when (label.lowercase()) {
-        "doing" -> TertiaryInProgress
-        "done" -> PrimaryGreen
+    val numberColor = when {
+        label.contains("doing", ignoreCase = true) || label.contains("تنفيذ", ignoreCase = true) -> TertiaryInProgress
+        label.contains("done", ignoreCase = true) || label.contains("مكتمل", ignoreCase = true) -> PrimaryGreen
         else -> MaterialTheme.colorScheme.onBackground
     }
 
@@ -362,7 +367,7 @@ fun CurrentTaskCard(
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = "Step ${task.currentStep} of ${task.totalSteps} · Almost done!",
+                        text = stringResource(R.string.step_progress_subtitle, task.currentStep, task.totalSteps),
                         fontSize = 14.sp,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
@@ -397,7 +402,7 @@ fun CurrentTaskCard(
                 ),
             ) {
                 Text(
-                    text = "Continue",
+                    text = stringResource(R.string.continue_button),
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
                 )
@@ -423,10 +428,10 @@ fun ChildBottomBar(
             icon = {
                 Icon(
                     imageVector = Icons.Default.Home,
-                    contentDescription = "Home",
+                    contentDescription = stringResource(R.string.nav_home),
                 )
             },
-            label = { Text("Home") },
+            label = { Text(stringResource(R.string.nav_home)) },
             colors = NavigationBarItemDefaults.colors(
                 indicatorColor = Color(0xFFDFF2E5),
             ),
@@ -437,10 +442,10 @@ fun ChildBottomBar(
             icon = {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.List,
-                    contentDescription = "My Tasks",
+                    contentDescription = stringResource(R.string.nav_my_tasks),
                 )
             },
-            label = { Text("My Tasks") },
+            label = { Text(stringResource(R.string.nav_my_tasks)) },
             colors = NavigationBarItemDefaults.colors(
                 indicatorColor = Color(0xFFDFF2E5),
             ),
