@@ -1,49 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="80dp"
-    android:height="80dp"
-    android:viewportWidth="80"
-    android:viewportHeight="80">
-  <path
-      android:fillColor="#EBF7ED"
-      android:pathData="M16,0h48c8.837,0 16,7.163 16,16v48c0,8.837 -7.163,16 -16,16H16c-8.837,0 -16,-7.163 -16,-16V16C0,7.163 7.163,0 16,0z"/>
+    android:width="160dp"
+    android:height="160dp"
+    android:viewportWidth="160"
+    android:viewportHeight="160">
 
-  <path
-      android:fillColor="#FFC94A"
-      android:pathData="M24,24c0,-1.105 0.895,-2 2,-2s2,0.895 2,2 -0.895,2 -2,2 -2,-0.895 -2,-2z"/>
-  <path
-      android:fillColor="#FFC94A"
-      android:pathData="M56,48c0,-1.105 0.895,-2 2,-2s2,0.895 2,2 -0.895,2 -2,2 -2,-0.895 -2,-2z"/>
-  <path
-      android:fillColor="#25844F"
-      android:pathData="M60,32c0,-1.105 0.895,-2 2,-2s2,0.895 2,2 -0.895,2 -2,2 -2,-0.895 -2,-2z"/>
+    <!-- Card Background with Soft Mint Green -->
+    <path
+        android:fillColor="#E1F5EC"
+        android:pathData="M 32,0 H 128 A 32,32 0 0 1 160,32 V 128 A 32,32 0 0 1 128,160 H 32 A 32,32 0 0 1 0,128 V 32 A 32,32 0 0 1 32,0 Z" />
 
-  <path
-      android:fillColor="#25844F"
-      android:pathData="M30,47c0,-1.105 0.895,-2 2,-2s2,0.895 2,2 -0.895,2 -2,2 -2,-0.895 -2,-2z"/>
-  <path
-      android:fillColor="#25844F"
-      android:pathData="M37,40c0,-1.105 0.895,-2 2,-2s2,0.895 2,2 -0.895,2 -2,2 -2,-0.895 -2,-2z"/>
-  <path
-      android:fillColor="#25844F"
-      android:pathData="M44,34c0,-1.105 0.895,-2 2,-2s2,0.895 2,2 -0.895,2 -2,2 -2,-0.895 -2,-2z"/>
-  <path
-      android:fillColor="#25844F"
-      android:pathData="M50,27c0,-1.105 0.895,-2 2,-2s2,0.895 2,2 -0.895,2 -2,2 -2,-0.895 -2,-2z"/>
+    <!-- Dotted Path Line -->
+    <!-- Path Dots -->
+    <path
+        android:fillColor="#81DAA4"
+        android:pathData="M 46,110 A 3,3 0 1,1 46,104 A 3,3 0 1,1 46,110 Z
+                          M 52,102 A 3,3 0 1,1 52,96 A 3,3 0 1,1 52,102 Z
+                          M 70,86 A 3,3 0 1,1 70,80 A 3,3 0 1,1 70,86 Z
+                          M 78,76 A 3,3 0 1,1 78,70 A 3,3 0 1,1 78,76 Z
+                          M 84,66 A 3,3 0 1,1 84,60 A 3,3 0 1,1 84,66 Z
+                          M 98,50 A 3,3 0 1,1 98,44 A 3,3 0 1,1 98,50 Z
+                          M 106,44 A 3,3 0 1,1 106,38 A 3,3 0 1,1 106,44 Z
+                          M 114,38 A 3,3 0 1,1 114,32 A 3,3 0 1,1 114,38 Z" />
 
-  <path
-      android:fillColor="#25844F"
-      android:pathData="M24,54c0,-3.314 2.686,-6 6,-6s6,2.686 6,6 -2.686,6 -6,6 -6,-2.686 -6,-6z"/>
+    <!-- Yellow Featured Path Dot -->
+    <path
+        android:fillColor="#FFC527"
+        android:pathData="M 61,91 A 5.5,5.5 0 1,1 61,80 A 5.5,5.5 0 1,1 61,91 Z" />
 
-  <path
-      android:fillColor="#FFC94A"
-      android:pathData="M39,37c0,-2.209 1.791,-4 4,-4s4,1.791 4,4 -1.791,4 -4,4 -4,-1.791 -4,-4z"/>
+    <!-- Peach/Orange Featured Path Dot -->
+    <path
+        android:fillColor="#FF7A59"
+        android:pathData="M 91,58 A 5.5,5.5 0 1,1 91,47 A 5.5,5.5 0 1,1 91,58 Z" />
 
-  <path
-      android:fillColor="#5B3FD9"
-      android:pathData="M56,16L64,20L56,24Z"/>
-  <path
-      android:strokeColor="#5B3FD9"
-      android:strokeWidth="2.5"
-      android:strokeLineCap="round"
-      android:pathData="M56,16V28"/>
+    <!-- Flagpole -->
+    <path
+        android:fillColor="#6B7280"
+        android:pathData="M 114,32 H 116.5 V 60 H 114 Z" />
+
+    <!-- Purple Flag -->
+    <path
+        android:fillColor="#7C3AED"
+        android:pathData="M 116.5,32 L 134,40 L 116.5,48 Z" />
+
+    <!-- Green Character Body -->
+    <path
+        android:fillColor="#04BE63"
+        android:pathData="M 45,125 A 14,14 0 1,1 45,97 A 14,14 0 1,1 45,125 Z" />
+
+    <!-- Green Character Eyes -->
+    <path
+        android:fillColor="#024724"
+        android:pathData="M 40,108 A 1.8,1.8 0 1,1 40,104.4 A 1.8,1.8 0 1,1 40,108 Z
+                          M 50,108 A 1.8,1.8 0 1,1 50,104.4 A 1.8,1.8 0 1,1 50,108 Z" />
+
+    <!-- Green Character Smile -->
+    <path
+        android:strokeColor="#024724"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:pathData="M 39,114 Q 45,119 51,114" />
+
+    <!-- Top Left Yellow Star -->
+    <path
+        android:fillColor="#FFC527"
+        android:pathData="M 34,28 L 36.2,33.2 L 41.5,33.6 L 37.4,37.1 L 38.7,42.4 L 34,39.5 L 29.3,42.4 L 30.6,37.1 L 26.5,33.6 L 31.8,33.2 Z" />
+
+    <!-- Bottom Left Light Blue Star -->
+    <path
+        android:fillColor="#3A9DF2"
+        android:pathData="M 32,98 L 33.3,101.3 L 36.5,101.5 L 34,103.7 L 34.8,107 L 32,105.2 L 29.2,107 L 30,103.7 L 27.5,101.5 L 30.7,101.3 Z" />
+
+    <!-- Right Middle Orange Star -->
+    <path
+        android:fillColor="#FF7A59"
+        android:pathData="M 130,95 L 131.3,98.3 L 134.5,98.5 L 132,100.7 L 132.8,104 L 130,102.2 L 127.2,104 L 128,100.7 L 125.5,98.5 L 128.7,98.3 Z" />
+
+    <!-- Bottom Right Yellow Star -->
+    <path
+        android:fillColor="#FFC527"
+        android:pathData="M 122,110 L 123.5,113.8 L 127.2,114 L 124.3,116.5 L 125.2,120.2 L 122,118.2 L 118.8,120.2 L 119.7,116.5 L 116.8,114 L 120.5,113.8 Z" />
+
 </vector>

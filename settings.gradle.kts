@@ -22,6 +22,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "TinyStep - stage2"
+rootProject.name = "TinySteps-1"
 include(":app")
- 
